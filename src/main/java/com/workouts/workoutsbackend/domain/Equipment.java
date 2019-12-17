@@ -19,13 +19,14 @@ import java.util.List;
 public class Equipment {
 
     @Id
+    @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ID")
-    private long id;
+    @Column(name = "ID", unique = true)
+    private Long id;
 
     @NotNull
     @Column(name = "EXTERNAL_ID")
-    private long externalId;
+    private Integer externalId;
 
     @NotNull
     @Column
@@ -37,6 +38,5 @@ public class Equipment {
             cascade = CascadeType.REMOVE,
             fetch = FetchType.LAZY
     )
-    @JoinColumn(name = "EXERCISE_ID")
     private List<Exercises> exercises = new ArrayList<>();
 }

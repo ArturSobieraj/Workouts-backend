@@ -19,9 +19,10 @@ import java.util.List;
 public class Exercises {
 
     @Id
+    @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "EXERCISE_ID")
-    private long id;
+    @Column(name = "EXERCISE_ID", unique = true)
+    private Long id;
 
     @NotNull
     @Column(name = "EXERCISE_NAME")
@@ -59,4 +60,12 @@ public class Exercises {
     @OneToOne(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     @JoinColumn(name = "FAVOURITE_EXERCISE_ID")
     private FavouriteExercises favouriteExercise;
+
+    @OneToMany(
+            targetEntity = ExercisesWithParameters.class,
+            mappedBy = "exercises",
+            cascade = CascadeType.REMOVE,
+            fetch = FetchType.EAGER
+    )
+    private List<ExercisesWithParameters> exercisesWithParameters;
 }
