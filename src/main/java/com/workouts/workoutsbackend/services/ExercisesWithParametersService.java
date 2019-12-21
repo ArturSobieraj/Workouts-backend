@@ -27,4 +27,8 @@ public class ExercisesWithParametersService {
     public void deleteAllExercises() {
         exercisesWithParametersDao.deleteAll();
     }
+
+    public List<ExercisesWithParameters> getExercisesByWorkout(Long workoutId) {
+        return exercisesWithParametersDao.getExercisesByWorkout(workoutId);
+    }
 }

@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -19,17 +21,16 @@ import java.util.List;
 public class Exercises {
 
     @Id
-    @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "EXERCISE_ID", unique = true)
     private Long id;
 
     @NotNull
-    @Column(name = "EXERCISE_NAME")
+    @Column(name = "EXERCISE_NAME", unique = true)
     private String exerciseName;
 
     @NotNull
-    @Column(name = "EXERCISE_DESCRIPTION")
+    @Column(name = "EXERCISE_DESCRIPTION", length = 3000)
     private String description;
 
     @NotNull
@@ -57,15 +58,28 @@ public class Exercises {
     @JoinColumn(name = "EQUIPMENT_ID")
     private Equipment equipment;
 
-    @OneToOne(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
-    @JoinColumn(name = "FAVOURITE_EXERCISE_ID")
-    private FavouriteExercises favouriteExercise;
+    @OneToMany(
+            targetEntity = FavouriteExercises.class,
+            mappedBy = "userFavouriteExercise",
+            cascade = CascadeType.REMOVE
+    )
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<FavouriteExercises> favouriteExercise = new ArrayList<>();
 
     @OneToMany(
             targetEntity = ExercisesWithParameters.class,
             mappedBy = "exercises",
-            cascade = CascadeType.REMOVE,
-            fetch = FetchType.EAGER
+            cascade = CascadeType.REMOVE
     )
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<ExercisesWithParameters> exercisesWithParameters;
+
+    public Exercises(String exerciseName, String description, Categories category, List<Muscles> musclesList, List<Muscles> secondaryMuscles, Equipment equipment) {
+        this.exerciseName = exerciseName;
+        this.description = description;
+        this.category = category;
+        this.muscles = musclesList;
+        this.secondaryMuscles = secondaryMuscles;
+        this.equipment = equipment;
+    }
 }

@@ -5,6 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Transactional
@@ -18,4 +19,10 @@ public interface MusclesDao extends CrudRepository<Muscles, Long> {
     void deleteAll();
 
     Optional<Muscles> findByExternalId(Integer externalId);
+
+    @Override
+    List<Muscles> findAll();
+
+    @Override
+    long count();
 }

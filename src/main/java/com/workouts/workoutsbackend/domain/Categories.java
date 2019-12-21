@@ -19,17 +19,16 @@ import java.util.List;
 public class Categories {
 
     @Id
-    @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID", unique = true)
     private Long id;
 
     @NotNull
-    @Column(name = "EXTERNAL_ID")
+    @Column(name = "EXTERNAL_ID", unique = true)
     private Integer externalId;
 
     @NotNull
-    @Column(name = "CATEGORY_NAME")
+    @Column(name = "CATEGORY_NAME", unique = true)
     private String categoryName;
 
     @OneToMany(
@@ -39,4 +38,9 @@ public class Categories {
             fetch = FetchType.LAZY
     )
     private List<Exercises> exercises = new ArrayList<>();
+
+    public Categories(Integer externalId, String categoryName) {
+        this.externalId = externalId;
+        this.categoryName = categoryName;
+    }
 }

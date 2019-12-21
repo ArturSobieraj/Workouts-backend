@@ -21,8 +21,8 @@ public class FavouriteExercisesService {
         favouriteExercisesDao.deleteAll();
     }
 
-    public void deleteUserFavouriteExercise(Long user_id, Long exercise_id) {
-        favouriteExercisesDao.deleteUsersFavouriteExercise(user_id, exercise_id);
+    public void deleteUserFavouriteExercise(Long id) {
+        favouriteExercisesDao.deleteById(id);
     }
 
     public List<FavouriteExercises> getUserFavourites(Users user) {

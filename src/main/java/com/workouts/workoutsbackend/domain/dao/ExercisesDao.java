@@ -1,5 +1,6 @@
 package com.workouts.workoutsbackend.domain.dao;
 
+import com.workouts.workoutsbackend.domain.Categories;
 import com.workouts.workoutsbackend.domain.Exercises;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -29,5 +30,8 @@ public interface ExercisesDao extends CrudRepository<Exercises, Long> {
     @Override
     List<Exercises> findAll();
 
-    List<Exercises> findByCategory(String category);
+    List<Exercises> findByCategory(Categories category);
+
+    @Override
+    long count();
 }

@@ -19,17 +19,16 @@ import java.util.List;
 public class Muscles {
 
     @Id
-    @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID", unique = true)
     private Long id;
 
     @NotNull
-    @Column(name = "EXTERNAL_ID")
-    private Long externalId;
+    @Column(name = "EXTERNAL_ID", unique = true)
+    private Integer externalId;
 
     @NotNull
-    @Column(name = "MUSCLE_NAME")
+    @Column(name = "MUSCLE_NAME", unique = true)
     private String muscleName;
 
     @ManyToMany(cascade = CascadeType.REFRESH, mappedBy = "muscles")
@@ -37,4 +36,9 @@ public class Muscles {
 
     @ManyToMany(cascade = CascadeType.REFRESH, mappedBy = "secondaryMuscles")
     private List<Exercises> exercisesWithSecondaryMuscles = new ArrayList<>();
+
+    public Muscles(Integer externalId, String muscleName) {
+        this.externalId = externalId;
+        this.muscleName = muscleName;
+    }
 }

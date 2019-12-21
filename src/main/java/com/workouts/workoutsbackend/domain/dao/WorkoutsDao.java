@@ -21,4 +21,6 @@ public interface WorkoutsDao extends CrudRepository<Workouts, Long> {
     List<Workouts> getWorkoutsByExercisingUser(Users user);
 
     void deleteByWorkoutName(String workoutName);
+
+
 }

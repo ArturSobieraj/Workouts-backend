@@ -5,6 +5,7 @@ import com.workouts.workoutsbackend.domain.dao.CategoriesDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -14,6 +15,10 @@ public class CategoriesService {
 
     public Categories saveCategory(Categories category) {
         return categoriesDao.save(category);
+    }
+
+    public List<Categories> getAllCategories() {
+        return categoriesDao.findAll();
     }
 
     public Optional<Categories> getCategoryByName(String categoryName) {
@@ -30,5 +35,9 @@ public class CategoriesService {
 
     public void deleteAllCategories() {
         categoriesDao.deleteAll();
+    }
+
+    public long getCategoriesCount() {
+        return categoriesDao.count();
     }
 }

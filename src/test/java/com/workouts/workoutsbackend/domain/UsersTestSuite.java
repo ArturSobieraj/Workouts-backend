@@ -1,7 +1,7 @@
 package com.workouts.workoutsbackend.domain;
 
 import com.workouts.workoutsbackend.domain.dao.UsersDao;
-import com.workouts.workoutsbackend.services.UsersService;
+import com.workouts.workoutsbackend.services.*;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
@@ -20,6 +20,14 @@ public class UsersTestSuite {
     private UsersService usersService;
     @Autowired
     private UsersDao usersDao;
+    @Autowired
+    private CategoriesService categoriesService;
+    @Autowired
+    private ExerciseService exerciseService;
+    @Autowired
+    private ExercisesWithParametersService exercisesWithParametersService;
+    @Autowired
+    private FavouriteExercisesService favouriteExercisesService;
 
     @Test
     public void testSaveAndGetUser() {

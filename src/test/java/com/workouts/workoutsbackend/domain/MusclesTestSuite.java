@@ -1,6 +1,6 @@
 package com.workouts.workoutsbackend.domain;
 
-import com.workouts.workoutsbackend.services.EquipmentService;
+import com.workouts.workoutsbackend.services.MusclesService;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
@@ -15,30 +15,30 @@ import java.util.Optional;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Transactional
-public class EquipmentTestSuite {
+public class MusclesTestSuite {
     @Autowired
-    private EquipmentService equipmentService;
+    private MusclesService musclesService;
 
     @Test
-    public void testSaveAndGetEquipment() {
+    public void testSaveAndGetMuscles() {
         //Given
-        Equipment equipment = new Equipment();
-        equipment.setExternalId(1);
-        equipment.setEquipmentName("test");
+        Muscles muscles = new Muscles();
+        muscles.setExternalId(1);
+        muscles.setMuscleName("test");
 
         //When
-        equipmentService.saveEquipment(equipment);
-        Optional<Equipment> getByExternalId = equipmentService.getEquipmentByExternalId(1);
+        musclesService.saveNewMuscle(muscles);
+        Optional<Muscles> getByExternalId = musclesService.findByExternalId(1);
 
         //Then
         Assert.assertTrue(getByExternalId.isPresent());
 
         //CleanUp
-        equipmentService.deleteAllEquipment();
+        musclesService.deleteAllMuscles();
     }
 
     @After
-    public void deleteAll() {
-        equipmentService.deleteAllEquipment();
+    public void cleanAll() {
+        musclesService.deleteAllMuscles();
     }
 }

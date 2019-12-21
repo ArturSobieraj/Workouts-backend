@@ -12,10 +12,16 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @Getter
 @Setter
-@NamedQuery(
-        name = "ExercisesWithParameters.getExercisesForNewWorkout",
-        query = "FROM ExercisesWithParameters WHERE workouts = null"
-)
+@NamedQueries({
+        @NamedQuery(
+                name = "ExercisesWithParameters.getExercisesForNewWorkout",
+                query = "FROM ExercisesWithParameters WHERE workouts = null"
+        ),
+        @NamedQuery(
+                name = "ExercisesWithParameters.getExercisesByWorkout",
+                query = "FROM ExercisesWithParameters WHERE workout_id = :workout_id"
+        )
+})
 @Entity
 @Table(name = "EXERCISES_WITH_PARAMETERS")
 public class ExercisesWithParameters {
@@ -43,7 +49,7 @@ public class ExercisesWithParameters {
     @Column(name = "PAUSE_TIME")
     private String pauseTime;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JoinColumn(name = "WORKOUT_ID")
     private Workouts workouts;
 }

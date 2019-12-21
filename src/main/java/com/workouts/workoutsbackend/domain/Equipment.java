@@ -19,17 +19,16 @@ import java.util.List;
 public class Equipment {
 
     @Id
-    @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID", unique = true)
     private Long id;
 
     @NotNull
-    @Column(name = "EXTERNAL_ID")
+    @Column(name = "EXTERNAL_ID", unique = true)
     private Integer externalId;
 
     @NotNull
-    @Column
+    @Column(name = "NAME", unique = true)
     private String equipmentName;
 
     @OneToMany(
@@ -39,4 +38,9 @@ public class Equipment {
             fetch = FetchType.LAZY
     )
     private List<Exercises> exercises = new ArrayList<>();
+
+    public Equipment(Integer externalId, String equipmentName) {
+        this.externalId = externalId;
+        this.equipmentName = equipmentName;
+    }
 }

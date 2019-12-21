@@ -25,4 +25,8 @@ public class UsersService {
     public void deleteUser(Long id) {
         usersDao.deleteById(id);
     }
+
+    public void deleteAllUsers() {
+        usersDao.deleteAll();
+    }
 }

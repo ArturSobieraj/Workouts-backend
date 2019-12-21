@@ -18,4 +18,7 @@ public interface UsersDao extends CrudRepository<Users, Long> {
 
     @Override
     void deleteById(Long id);
+
+    @Override
+    void deleteAll();
 }

@@ -1,5 +1,6 @@
 package com.workouts.workoutsbackend.services;
 
+import com.workouts.workoutsbackend.domain.Categories;
 import com.workouts.workoutsbackend.domain.Exercises;
 import com.workouts.workoutsbackend.domain.dao.ExercisesDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class ExerciseService {
         return exercisesDao.findAll();
     }
 
-    public List<Exercises> getExercisesByCategory(String category) {
+    public List<Exercises> getExercisesByCategory(Categories category) {
         return exercisesDao.findByCategory(category);
     }
 
@@ -35,5 +36,9 @@ public class ExerciseService {
 
     public void deleteAllExercises() {
         exercisesDao.deleteAll();
+    }
+
+    public long getExercisesCount() {
+        return exercisesDao.count();
     }
 }

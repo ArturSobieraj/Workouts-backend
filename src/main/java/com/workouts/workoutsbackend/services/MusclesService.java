@@ -5,6 +5,7 @@ import com.workouts.workoutsbackend.domain.dao.MusclesDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -22,5 +23,13 @@ public class MusclesService {
 
     public Optional<Muscles> findByExternalId(Integer externalId) {
         return musclesDao.findByExternalId(externalId);
+    }
+
+    public List<Muscles> getAllMuscles() {
+        return musclesDao.findAll();
+    }
+
+    public long getMusclesCount() {
+        return musclesDao.count();
     }
 }

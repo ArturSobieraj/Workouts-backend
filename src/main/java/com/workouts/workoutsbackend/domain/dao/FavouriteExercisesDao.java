@@ -20,8 +20,8 @@ public interface FavouriteExercisesDao extends CrudRepository<FavouriteExercises
     @Override
     void deleteAll();
 
-    @Query(nativeQuery = true)
-    void deleteUsersFavouriteExercise(@Param("USER_ID") Long user_id, @Param("EXERCISE_ID") Long exercise_id);
+    @Override
+    void deleteById(Long id);
 
     List<FavouriteExercises> getFavouritesByUser(Users user);
 }
