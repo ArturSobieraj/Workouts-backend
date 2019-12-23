@@ -11,6 +11,9 @@ Aplikacja pozwala na tworzenie i personalizację treningów na siłowni, z dost�
 ## Znane problemy:
 W chwili wysłania commita zabrakło niestety czasu na: 
 - Pokrycie testami większej ilości kodu
+- Deployment na zewnętrzny serwer
+- Implementację OAuth 2.0
+- Wbudowany tłumacz nie tłumaczy tekstów zbyt dobrze (jego implementacja nie była dobrym pomysłem)
 - Implementację 3 tabel, do których automatycznie zapisywane byłyby dane o ruchu na stronie
 - Implementację controllerów odpowiedzialnych za dodanie i edycję treningu
 - Refactor kodu
