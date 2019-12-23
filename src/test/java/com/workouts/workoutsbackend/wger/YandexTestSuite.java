@@ -11,7 +11,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.UnsupportedEncodingException;
-import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -30,7 +29,6 @@ public class YandexTestSuite {
 
         //When
         String translatedText = "";
-        wgerController.getEquipment();
         try {
             translatedText = yandexClient.translateText(simpleText);
         } catch (UnsupportedEncodingException e) {

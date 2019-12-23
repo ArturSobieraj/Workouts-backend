@@ -1,14 +1,12 @@
 package com.workouts.workoutsbackend.clients;
 
-import com.workouts.workoutsbackend.domain.wgerDto.categories.CategoriesResponseDto;
-import com.workouts.workoutsbackend.domain.wgerDto.equipment.EquipmentResponseDto;
-import com.workouts.workoutsbackend.domain.wgerDto.equipment.WgerEquipmentResponse;
-import com.workouts.workoutsbackend.domain.wgerDto.categories.WgerCategoriesResponse;
-import com.workouts.workoutsbackend.domain.wgerDto.exercises.ExerciseResponseDto;
-import com.workouts.workoutsbackend.domain.wgerDto.exercises.WgerExerciseCounter;
-import com.workouts.workoutsbackend.domain.wgerDto.exercises.WgerExercisesResponse;
-import com.workouts.workoutsbackend.domain.wgerDto.muscles.MuscleResponseDto;
-import com.workouts.workoutsbackend.domain.wgerDto.muscles.WgerMusclesResponse;
+import com.workouts.workoutsbackend.domain.dto.wgerDto.categories.CategoriesResponseDto;
+import com.workouts.workoutsbackend.domain.dto.wgerDto.categories.WgerCategoriesResponse;
+import com.workouts.workoutsbackend.domain.dto.wgerDto.exercises.ExerciseResponseDto;
+import com.workouts.workoutsbackend.domain.dto.wgerDto.exercises.WgerExerciseCounter;
+import com.workouts.workoutsbackend.domain.dto.wgerDto.exercises.WgerExercisesResponse;
+import com.workouts.workoutsbackend.domain.dto.wgerDto.muscles.MuscleResponseDto;
+import com.workouts.workoutsbackend.domain.dto.wgerDto.muscles.WgerMusclesResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,19 +32,6 @@ public class WgerClient {
     @Autowired
     private RestTemplate restTemplate;
 
-    public List<EquipmentResponseDto> getWgerEquipment() {
-        URI equipmentURL = UriComponentsBuilder.fromHttpUrl(wgerEndpoint + "/equipment")
-                .queryParam("language", 2)
-                .queryParam("status", 2).build().encode().toUri();
-
-        try {
-            WgerEquipmentResponse equipmentResponse = restTemplate.getForObject(equipmentURL, WgerEquipmentResponse.class);
-            return Optional.ofNullable(equipmentResponse.getEquipmentList()).orElse(new ArrayList<>());
-        } catch (RestClientException e) {
-            LOGGER.error(e.getMessage());
-            return new ArrayList<>();
-        }
-    }
 
     public List<CategoriesResponseDto> getWgerCategories() {
         URI categoriesURL = UriComponentsBuilder.fromHttpUrl(wgerEndpoint + "/exercisecategory")

@@ -20,6 +20,8 @@ public interface MusclesDao extends CrudRepository<Muscles, Long> {
 
     Optional<Muscles> findByExternalId(Integer externalId);
 
+    Muscles findByMuscleName(String muscleName);
+
     @Override
     List<Muscles> findAll();
 

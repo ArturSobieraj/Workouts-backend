@@ -1,12 +1,10 @@
-package com.workouts.workoutsbackend.domain.wgerDto.categories;
+package com.workouts.workoutsbackend.domain.dto.wgerDto.categories;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.workouts.workoutsbackend.domain.wgerDto.categories.CategoriesResponseDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.util.List;
 

@@ -1,11 +1,10 @@
-package com.workouts.workoutsbackend.domain.wgerDto.equipment;
+package com.workouts.workoutsbackend.domain.dto.wgerDto.exercises;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.util.List;
 
@@ -13,11 +12,8 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class WgerEquipmentResponse {
-
-    @JsonProperty("count")
-    private Integer count;
+public class WgerExercisesResponse {
 
     @JsonProperty("results")
-    private List<EquipmentResponseDto> equipmentList;
+    private List<ExerciseResponseDto> exerciseResponseDtoList;
 }

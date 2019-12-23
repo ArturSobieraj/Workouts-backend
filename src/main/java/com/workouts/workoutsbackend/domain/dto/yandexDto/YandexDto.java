@@ -1,4 +1,4 @@
-package com.workouts.workoutsbackend.domain.wgerDto.exercises;
+package com.workouts.workoutsbackend.domain.dto.yandexDto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -6,12 +6,16 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class WgerExerciseCounter {
+public class YandexDto {
 
-    @JsonProperty("count")
-    private Integer count;
+    @JsonProperty("text")
+    private List<String> translatedText;
+
+
 }

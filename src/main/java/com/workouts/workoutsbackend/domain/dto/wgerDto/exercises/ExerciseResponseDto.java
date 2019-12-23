@@ -1,4 +1,4 @@
-package com.workouts.workoutsbackend.domain.wgerDto.exercises;
+package com.workouts.workoutsbackend.domain.dto.wgerDto.exercises;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -25,10 +25,4 @@ public class ExerciseResponseDto {
 
     @JsonProperty("muscles")
     private List<Integer> muscles;
-
-    @JsonProperty("muscles_secondary")
-    private List<Integer> secondaryMuscles;
-
-    @JsonProperty("equipment")
-    private List<Integer> equipment;
 }

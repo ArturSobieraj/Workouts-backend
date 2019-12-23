@@ -1,4 +1,4 @@
-package com.workouts.workoutsbackend.domain.wgerDto.muscles;
+package com.workouts.workoutsbackend.domain.dto.wgerDto.muscles;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;

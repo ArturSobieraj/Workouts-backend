@@ -1,4 +1,4 @@
-package com.workouts.workoutsbackend.domain.wgerDto.equipment;
+package com.workouts.workoutsbackend.domain.dto.wgerDto.categories;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -10,11 +10,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class EquipmentResponseDto {
+public class CategoriesResponseDto {
 
     @JsonProperty("id")
     private Integer externalId;
 
     @JsonProperty("name")
-    private String equipmentName;
+    private String categoryName;
 }

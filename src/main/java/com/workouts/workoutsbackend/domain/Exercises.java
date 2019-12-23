@@ -38,25 +38,13 @@ public class Exercises {
     @JoinColumn(name = "CATEGORY_ID")
     private Categories category;
 
-    @ManyToMany(cascade = CascadeType.REFRESH)
+    @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JoinTable(
             name = "JOIN_EXERCISES_MUSCLES",
             joinColumns = {@JoinColumn(name = "EXERCISE_ID", referencedColumnName = "EXERCISE_ID")},
             inverseJoinColumns = {@JoinColumn(name = "MUSCLE_ID", referencedColumnName = "ID")}
     )
     private List<Muscles> muscles = new ArrayList<>();
-
-    @ManyToMany(cascade = CascadeType.REFRESH)
-    @JoinTable(
-            name = "JOIN_EXERCISES_SECONDARY_MUSCLES",
-            joinColumns = {@JoinColumn(name = "EXERCISE_ID", referencedColumnName = "EXERCISE_ID")},
-            inverseJoinColumns = {@JoinColumn(name = "MUSCLE_ID", referencedColumnName = "ID")}
-    )
-    private List<Muscles> secondaryMuscles = new ArrayList<>();
-
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
-    @JoinColumn(name = "EQUIPMENT_ID")
-    private Equipment equipment;
 
     @OneToMany(
             targetEntity = FavouriteExercises.class,
@@ -74,12 +62,18 @@ public class Exercises {
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<ExercisesWithParameters> exercisesWithParameters;
 
-    public Exercises(String exerciseName, String description, Categories category, List<Muscles> musclesList, List<Muscles> secondaryMuscles, Equipment equipment) {
+    public Exercises(String exerciseName, String description, Categories category, List<Muscles> musclesList) {
         this.exerciseName = exerciseName;
         this.description = description;
         this.category = category;
         this.muscles = musclesList;
-        this.secondaryMuscles = secondaryMuscles;
-        this.equipment = equipment;
+    }
+
+    public Exercises(Long id, String exerciseName, String description, Categories category, List<Muscles> musclesList) {
+        this.id = id;
+        this.exerciseName = exerciseName;
+        this.description = description;
+        this.category = category;
+        this.muscles = musclesList;
     }
 }

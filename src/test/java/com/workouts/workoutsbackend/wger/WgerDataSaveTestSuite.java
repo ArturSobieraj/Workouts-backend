@@ -3,15 +3,12 @@ package com.workouts.workoutsbackend.wger;
 import com.workouts.workoutsbackend.clients.WgerClient;
 import com.workouts.workoutsbackend.controllers.wger.WgerController;
 import com.workouts.workoutsbackend.domain.Categories;
-import com.workouts.workoutsbackend.domain.Equipment;
 import com.workouts.workoutsbackend.domain.Exercises;
 import com.workouts.workoutsbackend.domain.Muscles;
-import com.workouts.workoutsbackend.domain.wgerDto.categories.CategoriesResponseDto;
-import com.workouts.workoutsbackend.domain.wgerDto.equipment.EquipmentResponseDto;
-import com.workouts.workoutsbackend.domain.wgerDto.exercises.ExerciseResponseDto;
-import com.workouts.workoutsbackend.domain.wgerDto.muscles.MuscleResponseDto;
+import com.workouts.workoutsbackend.domain.dto.wgerDto.categories.CategoriesResponseDto;
+import com.workouts.workoutsbackend.domain.dto.wgerDto.exercises.ExerciseResponseDto;
+import com.workouts.workoutsbackend.domain.dto.wgerDto.muscles.MuscleResponseDto;
 import com.workouts.workoutsbackend.services.CategoriesService;
-import com.workouts.workoutsbackend.services.EquipmentService;
 import com.workouts.workoutsbackend.services.ExerciseService;
 import com.workouts.workoutsbackend.services.MusclesService;
 import org.junit.After;
@@ -37,8 +34,6 @@ public class WgerDataSaveTestSuite {
     private WgerClient wgerClient;
     @Autowired
     private MusclesService musclesService;
-    @Autowired
-    private EquipmentService equipmentService;
     @Autowired
     private ExerciseService exerciseService;
 
@@ -73,26 +68,10 @@ public class WgerDataSaveTestSuite {
     }
 
     @Test
-    public void testSaveWgerEquipment() {
-        //Given
-        //When
-        List<EquipmentResponseDto> equipmentResponseDtoList = wgerClient.getWgerEquipment();
-        wgerController.getEquipment();
-        List<Equipment> equipmentList = equipmentService.getAllEquipment();
-
-        //Then
-        Assert.assertEquals(equipmentResponseDtoList.size(), equipmentList.size());
-
-        //CleanUp
-        equipmentService.deleteAllEquipment();
-    }
-
-    @Test
     public void testSaveWgerExercises() {
         //Given
         //When
         List<ExerciseResponseDto> exerciseResponseDtoList = wgerClient.getWgerExercises();
-        wgerController.getEquipment();
         wgerController.getMuscles();
         wgerController.getCategories();
         wgerController.getExercises();
@@ -104,7 +83,6 @@ public class WgerDataSaveTestSuite {
         //CleanUp
         categoriesService.deleteAllCategories();
         musclesService.deleteAllMuscles();
-        equipmentService.deleteAllEquipment();
         exerciseService.deleteAllExercises();
     }
 
@@ -112,7 +90,6 @@ public class WgerDataSaveTestSuite {
     public void cleanUp() {
         categoriesService.deleteAllCategories();
         musclesService.deleteAllMuscles();
-        equipmentService.deleteAllEquipment();
         exerciseService.deleteAllExercises();
     }
 }

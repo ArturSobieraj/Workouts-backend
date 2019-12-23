@@ -1,6 +1,5 @@
 package com.workouts.workoutsbackend.domain;
 
-import com.workouts.workoutsbackend.domain.dao.CategoriesDao;
 import com.workouts.workoutsbackend.services.CategoriesService;
 import org.junit.After;
 import org.junit.Assert;
@@ -29,11 +28,11 @@ public class CategoriesTestSuite {
 
         //When
         categoriesService.saveCategory(category);
-        Optional<Categories> getByName = categoriesService.getCategoryByName("test");
+        Categories getByName = categoriesService.getCategoryByName("test");
         Optional<Categories> getByExternalId = categoriesService.getCategoryByExternalId(1);
 
         //Then
-        Assert.assertTrue(getByName.isPresent());
+        Assert.assertEquals("test", getByName.getCategoryName());
         Assert.assertTrue(getByExternalId.isPresent());
 
         //CleanUp

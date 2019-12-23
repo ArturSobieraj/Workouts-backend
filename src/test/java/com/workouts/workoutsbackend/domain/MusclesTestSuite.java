@@ -23,12 +23,12 @@ public class MusclesTestSuite {
     public void testSaveAndGetMuscles() {
         //Given
         Muscles muscles = new Muscles();
-        muscles.setExternalId(1);
+        muscles.setExternalId(20);
         muscles.setMuscleName("test");
 
         //When
         musclesService.saveNewMuscle(muscles);
-        Optional<Muscles> getByExternalId = musclesService.findByExternalId(1);
+        Optional<Muscles> getByExternalId = musclesService.findByExternalId(20);
 
         //Then
         Assert.assertTrue(getByExternalId.isPresent());

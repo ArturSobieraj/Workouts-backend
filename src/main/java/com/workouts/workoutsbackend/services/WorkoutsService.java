@@ -26,6 +26,6 @@ public class WorkoutsService {
     }
 
     public List<Workouts> getUsersWorkouts(Users user) {
-        return workoutsDao.getWorkoutsByExercisingUser(user);
+        return workoutsDao.getByExercisingUser(user);
     }
 }

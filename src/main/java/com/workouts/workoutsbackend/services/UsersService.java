@@ -5,6 +5,8 @@ import com.workouts.workoutsbackend.domain.dao.UsersDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UsersService {
     @Autowired
@@ -28,5 +30,9 @@ public class UsersService {
 
     public void deleteAllUsers() {
         usersDao.deleteAll();
+    }
+
+    public List<Users> getAllUsers() {
+        return usersDao.findAll();
     }
 }

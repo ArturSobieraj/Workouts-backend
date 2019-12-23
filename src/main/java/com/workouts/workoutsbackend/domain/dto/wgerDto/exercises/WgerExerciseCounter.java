@@ -1,4 +1,4 @@
-package com.workouts.workoutsbackend.domain.wgerDto.muscles;
+package com.workouts.workoutsbackend.domain.dto.wgerDto.exercises;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -10,11 +10,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class MuscleResponseDto {
+public class WgerExerciseCounter {
 
-    @JsonProperty("id")
-    private Integer externalId;
-
-    @JsonProperty("name")
-    private String muscleName;
+    @JsonProperty("count")
+    private Integer count;
 }

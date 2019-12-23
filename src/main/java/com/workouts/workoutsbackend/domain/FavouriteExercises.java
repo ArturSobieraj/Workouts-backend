@@ -17,7 +17,6 @@ import javax.validation.constraints.NotNull;
 public class FavouriteExercises {
 
     @Id
-    @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID", unique = true)
     private Long id;
@@ -27,8 +26,13 @@ public class FavouriteExercises {
     @JoinColumn(name = "USER_ID")
     private Users user;
 
+    @NotNull
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JoinColumn(name = "EXERCISE_ID")
     private Exercises userFavouriteExercise;
 
+    public FavouriteExercises(Users user, Exercises exercises) {
+        this.user = user;
+        this.userFavouriteExercise = exercises;
+    }
 }

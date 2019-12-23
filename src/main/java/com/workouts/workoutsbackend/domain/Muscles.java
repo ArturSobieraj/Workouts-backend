@@ -34,9 +34,6 @@ public class Muscles {
     @ManyToMany(cascade = CascadeType.REFRESH, mappedBy = "muscles")
     private List<Exercises> exercises = new ArrayList<>();
 
-    @ManyToMany(cascade = CascadeType.REFRESH, mappedBy = "secondaryMuscles")
-    private List<Exercises> exercisesWithSecondaryMuscles = new ArrayList<>();
-
     public Muscles(Integer externalId, String muscleName) {
         this.externalId = externalId;
         this.muscleName = muscleName;

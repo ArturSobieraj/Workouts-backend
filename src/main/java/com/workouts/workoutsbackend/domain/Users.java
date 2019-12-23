@@ -21,7 +21,6 @@ import java.util.List;
 public class Users {
 
     @Id
-    @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "USER_ID", unique = true)
     private Long id;
@@ -49,4 +48,9 @@ public class Users {
     )
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Workouts> workouts = new ArrayList<>();
+
+    public Users(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
 }

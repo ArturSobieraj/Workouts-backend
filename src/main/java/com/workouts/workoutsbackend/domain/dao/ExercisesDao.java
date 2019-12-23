@@ -22,7 +22,7 @@ public interface ExercisesDao extends CrudRepository<Exercises, Long> {
     @Override
     void deleteById(Long id);
 
-    Optional<Exercises> findByExerciseName(String exerciseName);
+    Exercises findByExerciseName(String exerciseName);
 
     @Override
     Optional<Exercises> findById(Long id);

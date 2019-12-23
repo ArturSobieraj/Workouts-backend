@@ -5,6 +5,8 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Transactional
 @Repository
 public interface UsersDao extends CrudRepository<Users, Long> {
@@ -21,4 +23,7 @@ public interface UsersDao extends CrudRepository<Users, Long> {
 
     @Override
     void deleteAll();
+
+    @Override
+    List<Users> findAll();
 }

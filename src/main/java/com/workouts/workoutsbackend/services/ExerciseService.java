@@ -5,9 +5,10 @@ import com.workouts.workoutsbackend.domain.Exercises;
 import com.workouts.workoutsbackend.domain.dao.ExercisesDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ExerciseService {
@@ -18,10 +19,15 @@ public class ExerciseService {
         return exercisesDao.save(exercise);
     }
 
-    public Optional<Exercises> getExerciseByName(String exerciseName) {
+    public Exercises getExerciseByName(String exerciseName) {
         return exercisesDao.findByExerciseName(exerciseName);
     }
 
+    public Exercises getExerciseById(Long id) {
+        return exercisesDao.findById(id).orElse(new Exercises());
+    }
+
+    @Transactional(propagation= Propagation.REQUIRED, readOnly=true, noRollbackFor=Exception.class)
     public List<Exercises> getAllExercises() {
         return exercisesDao.findAll();
     }

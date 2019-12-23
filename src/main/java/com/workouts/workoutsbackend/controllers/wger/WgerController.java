@@ -3,12 +3,10 @@ package com.workouts.workoutsbackend.controllers.wger;
 import com.workouts.workoutsbackend.clients.WgerClient;
 import com.workouts.workoutsbackend.clients.YandexClient;
 import com.workouts.workoutsbackend.domain.Categories;
-import com.workouts.workoutsbackend.domain.Equipment;
 import com.workouts.workoutsbackend.domain.Exercises;
 import com.workouts.workoutsbackend.domain.Muscles;
 import com.workouts.workoutsbackend.mappers.WgerMapper;
 import com.workouts.workoutsbackend.services.CategoriesService;
-import com.workouts.workoutsbackend.services.EquipmentService;
 import com.workouts.workoutsbackend.services.ExerciseService;
 import com.workouts.workoutsbackend.services.MusclesService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,33 +30,14 @@ public class WgerController {
     @Autowired
     private MusclesService musclesService;
     @Autowired
-    private EquipmentService equipmentService;
-    @Autowired
     private ExerciseService exerciseService;
     @Autowired
     private YandexClient yandexClient;
 
     @Scheduled(cron = "0 0 5 * * *")
-    @GetMapping(value = "equipment")
-    public void getEquipment() {
-        List<Equipment> equipmentList = wgerMapper.mapToEquipmentList(wgerClient.getWgerEquipment());
-        equipmentList.forEach(equipment -> equipment.setEquipmentName(yandexClient.translationExceptionHandler(equipment.getEquipmentName())));
-        if (equipmentService.getEquipmentCount() == 0) {
-            equipmentList.forEach(equipment -> equipmentService.saveEquipment(equipment));
-        } else {
-            equipmentList.forEach(equipment -> {
-                if (!equipmentService.getEquipmentByExternalId(equipment.getExternalId()).isPresent()) {
-                    equipmentService.saveEquipment(equipment);
-                }
-            });
-        }
-    }
-
-    @Scheduled(cron = "0 0 5 * * *")
     @GetMapping(value = "categories")
     public void getCategories() {
         List<Categories> categoriesList = wgerMapper.mapToCategoriesList(wgerClient.getWgerCategories());
-        categoriesList.forEach(categories -> categories.setCategoryName(yandexClient.translationExceptionHandler(categories.getCategoryName())));
         if (categoriesService.getCategoriesCount() == 0) {
             categoriesList.forEach(categories -> categoriesService.saveCategory(categories));
         } else {
@@ -97,7 +76,7 @@ public class WgerController {
             exercisesList.forEach(exercises -> exerciseService.saveExercise(exercises));
         } else {
             exercisesList.forEach(exercises -> {
-                if (!exerciseService.getExerciseByName(exercises.getExerciseName()).isPresent()) {
+                if (exerciseService.getExerciseByName(exercises.getExerciseName()) == null) {
                     exerciseService.saveExercise(exercises);
                 }
             });

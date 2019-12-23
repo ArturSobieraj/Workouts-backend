@@ -21,8 +21,8 @@ public class CategoriesService {
         return categoriesDao.findAll();
     }
 
-    public Optional<Categories> getCategoryByName(String categoryName) {
-        return categoriesDao.findByCategoryName(categoryName);
+    public Categories getCategoryByName(String categoryName) {
+        return categoriesDao.findByCategoryName(categoryName).orElse(new Categories());
     }
 
     public Optional<Categories> getCategoryByExternalId(Integer externalId) {

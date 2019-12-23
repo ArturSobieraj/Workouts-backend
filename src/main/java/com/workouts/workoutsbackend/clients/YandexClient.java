@@ -1,6 +1,6 @@
 package com.workouts.workoutsbackend.clients;
 
-import com.workouts.workoutsbackend.domain.dto.YandexDto;
+import com.workouts.workoutsbackend.domain.dto.yandexDto.YandexDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;

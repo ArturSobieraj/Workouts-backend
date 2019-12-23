@@ -32,4 +32,8 @@ public class MusclesService {
     public long getMusclesCount() {
         return musclesDao.count();
     }
+
+    public Muscles getMuscleByName(String muscleName) {
+        return musclesDao.findByMuscleName(muscleName);
+    }
 }

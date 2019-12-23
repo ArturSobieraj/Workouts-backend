@@ -1,6 +1,5 @@
 package com.workouts.workoutsbackend.domain;
 
-import com.workouts.workoutsbackend.domain.dao.ExercisesWithParametersDao;
 import com.workouts.workoutsbackend.services.*;
 import org.junit.After;
 import org.junit.Assert;
@@ -12,9 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -97,7 +94,7 @@ public class ExercisesWithParametersTestSuite {
         exercisesWithParametersService.deleteExercise(exercisesWithParameters.getId());
 
         List<Exercises> getAllExercises = exerciseService.getAllExercises();
-        Optional<Categories> getCategory = categoriesService.getCategoryByName(category.getCategoryName());
+        Categories getCategory = categoriesService.getCategoryByName(category.getCategoryName());
         Users users = usersService.getUser(user.getEmail());
         List<Workouts> getWorkouts = workoutsService.getUsersWorkouts(user);
 
@@ -105,7 +102,7 @@ public class ExercisesWithParametersTestSuite {
         Assert.assertEquals(1, getAllExercises.size());
         Assert.assertEquals(1, getWorkouts.size());
         Assert.assertNotNull(users);
-        Assert.assertTrue(getCategory.isPresent());
+        Assert.assertEquals("test", getCategory.getCategoryName());
 
         //CleanUp
         exercisesWithParametersService.deleteAllExercises();
