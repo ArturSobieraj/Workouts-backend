@@ -16,4 +16,5 @@ W chwili wysłania commita zabrakło niestety czasu na:
 - Wbudowany tłumacz nie tłumaczy tekstów zbyt dobrze (jego implementacja nie była dobrym pomysłem)
 - Implementację 3 tabel, do których automatycznie zapisywane byłyby dane o ruchu na stronie
 - Implementację controllerów odpowiedzialnych za dodanie i edycję treningu
+- Przy pierwszym uruchomieniu ściągnięcie ćwiczeń z zewnętrznej bazy danych może zająć trochę czasu
 - Refactor kodu
