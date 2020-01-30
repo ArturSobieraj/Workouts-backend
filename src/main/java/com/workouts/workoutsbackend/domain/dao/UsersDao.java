@@ -6,12 +6,13 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Transactional
 @Repository
 public interface UsersDao extends CrudRepository<Users, Long> {
 
-    Users findByEmail(String email);
+    Optional<Users> findByEmail(String email);
 
     @Override
     Users save(Users users);

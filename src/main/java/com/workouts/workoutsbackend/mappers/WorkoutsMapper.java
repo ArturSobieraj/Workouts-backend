@@ -15,15 +15,23 @@ public class WorkoutsMapper {
     @Autowired
     private UsersMapper usersMapper;
 
-    public List<WorkoutsDto> mapToWorkoutsDtoList(final List<Workouts> workoutsList) {
+    public List<WorkoutsDto> mapToWorkoutsDtoList(List<Workouts> workoutsList) {
         return workoutsList.stream()
                 .map(workouts ->
                         new WorkoutsDto(workouts.getId(),
                                 workouts.getWorkoutName(),
-                                exerciseWithParametersMapper.exercisesWithParametersDtoList
+                                exerciseWithParametersMapper.mapToExercisesWithParametersDtoList
                                         (workouts.getExercisesWithParameters()),
                                 workouts.getLocalDate(),
-                                usersMapper.mapToUsersDto(workouts.getExercisingUser())))
+                                workouts.getExercisingUser()))
                 .collect(Collectors.toList());
+    }
+
+    public WorkoutsDto mapToWorkoutsDto(Workouts workouts) {
+        return new WorkoutsDto(workouts.getId(),
+                workouts.getWorkoutName(),
+                exerciseWithParametersMapper.mapToExercisesWithParametersDtoList(workouts.getExercisesWithParameters()),
+                workouts.getLocalDate(),
+                workouts.getExercisingUser());
     }
 }

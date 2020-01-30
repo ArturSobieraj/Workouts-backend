@@ -1,6 +1,5 @@
 package com.workouts.workoutsbackend.services;
 
-import com.workouts.workoutsbackend.domain.Users;
 import com.workouts.workoutsbackend.domain.Workouts;
 import com.workouts.workoutsbackend.domain.dao.WorkoutsDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +24,11 @@ public class WorkoutsService {
         workoutsDao.deleteByWorkoutName(workoutName);
     }
 
-    public List<Workouts> getUsersWorkouts(Users user) {
-        return workoutsDao.getByExercisingUser(user);
+    public List<Workouts> getUsersWorkouts(String userName) {
+        return workoutsDao.findByExercisingUser(userName);
+    }
+
+    public Workouts getById(Long id) {
+        return workoutsDao.findById(id).orElse(new Workouts());
     }
 }

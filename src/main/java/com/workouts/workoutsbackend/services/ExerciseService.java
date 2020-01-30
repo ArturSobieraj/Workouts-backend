@@ -20,7 +20,7 @@ public class ExerciseService {
     }
 
     public Exercises getExerciseByName(String exerciseName) {
-        return exercisesDao.findByExerciseName(exerciseName);
+        return exercisesDao.findByExerciseName(exerciseName).orElse(new Exercises());
     }
 
     public Exercises getExerciseById(Long id) {

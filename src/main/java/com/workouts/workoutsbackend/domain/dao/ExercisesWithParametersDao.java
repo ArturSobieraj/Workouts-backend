@@ -22,6 +22,10 @@ public interface ExercisesWithParametersDao extends CrudRepository<ExercisesWith
     @Override
     void deleteAll();
 
+    void deleteByUserName(String userName);
+
+    List<ExercisesWithParameters> getExercisesByUserName(String userName);
+
     @Query
     List<ExercisesWithParameters> getExercisesForNewWorkout();
 

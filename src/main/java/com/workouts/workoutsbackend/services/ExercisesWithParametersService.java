@@ -16,12 +16,16 @@ public class ExercisesWithParametersService {
         return exercisesWithParametersDao.save(exercisesWithParameters);
     }
 
-    public List<ExercisesWithParameters> getExercisesForNewWorkout() {
-        return exercisesWithParametersDao.getExercisesForNewWorkout();
-    }
-
     public void deleteExercise(Long id) {
         exercisesWithParametersDao.deleteById(id);
+    }
+
+    public void deleteUsersExercise(String userName) {
+        exercisesWithParametersDao.deleteByUserName(userName);
+    }
+
+    public List<ExercisesWithParameters> getUsersExercises(String userName) {
+        return exercisesWithParametersDao.getExercisesByUserName(userName);
     }
 
     public void deleteAllExercises() {

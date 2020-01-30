@@ -35,6 +35,10 @@ public class ExercisesController {
         if (exerciseService.getExercisesCount() == 0) {
             wgerFacade.fetchAllData();
         }
-        return exercisesMapper.mapToExerciseDto(exerciseService.getExerciseByName(name));
+        try {
+            return exercisesMapper.mapToExerciseDto(exerciseService.getExerciseByName(name));
+        } catch (NullPointerException e) {
+            return new ExerciseDto();
+        }
     }
 }

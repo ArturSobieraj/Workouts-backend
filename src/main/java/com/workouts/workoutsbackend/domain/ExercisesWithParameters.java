@@ -27,7 +27,6 @@ import javax.validation.constraints.NotNull;
 public class ExercisesWithParameters {
 
     @Id
-    @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID", unique = true)
     private Long id;
@@ -49,7 +48,34 @@ public class ExercisesWithParameters {
     @Column(name = "PAUSE_TIME")
     private String pauseTime;
 
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    @Column(name = "USER_NAME")
+    private String userName;
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "WORKOUT_ID")
     private Workouts workouts;
+
+    public ExercisesWithParameters(Exercises exercises, String numberOfSeries, String numberOfRepetitions, String pauseTime, String userName) {
+        this.exercises = exercises;
+        this.numberOfSeries = numberOfSeries;
+        this.numberOfRepetitions = numberOfRepetitions;
+        this.pauseTime = pauseTime;
+        this.userName = userName;
+    }
+
+    public ExercisesWithParameters(Long id, Exercises exercises, String numberOfSeries, String numberOfRepetitions, String pauseTime, String userName) {
+        this.id = id;
+        this.exercises = exercises;
+        this.numberOfSeries = numberOfSeries;
+        this.numberOfRepetitions = numberOfRepetitions;
+        this.pauseTime = pauseTime;
+        this.userName = userName;
+    }
+
+    public ExercisesWithParameters(Exercises exercises, String numberOfSeries, String numberOfRepetitions, String pauseTime) {
+        this.exercises = exercises;
+        this.numberOfSeries = numberOfSeries;
+        this.numberOfRepetitions = numberOfRepetitions;
+        this.pauseTime = pauseTime;
+    }
 }

@@ -1,5 +1,6 @@
 package com.workouts.workoutsbackend.controllers.wger;
 
+import com.workouts.workoutsbackend.domain.Users;
 import com.workouts.workoutsbackend.domain.dto.UsersDto;
 import com.workouts.workoutsbackend.mappers.UsersMapper;
 import com.workouts.workoutsbackend.services.UsersService;
@@ -7,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
-import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
 @RequestMapping("/v1/users/")
@@ -29,8 +28,8 @@ public class UsersController {
         return usersMapper.mapToUsersDto(usersService.getUser(userMail));
     }
 
-    @PostMapping(value = "add", consumes = APPLICATION_JSON_VALUE)
-    public void addUser(@RequestBody UsersDto userDto) {
-        usersService.saveUser(usersMapper.mapToUsers(userDto));
+    @PostMapping(value = "add")
+    public void addUser(@RequestParam String userName, @RequestParam String password) {
+        usersService.saveUser(new Users(userName, password));
     }
 }

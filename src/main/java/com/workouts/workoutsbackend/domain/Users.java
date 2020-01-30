@@ -4,8 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -26,7 +24,7 @@ public class Users {
     private Long id;
 
     @NotNull
-    @Column(name = "USER_LOGIN")
+    @Column(name = "USER_LOGIN", unique = true)
     private String email;
 
     @NotNull
@@ -36,18 +34,10 @@ public class Users {
     @OneToMany(
             targetEntity = FavouriteExercises.class,
             mappedBy = "user",
-            cascade = CascadeType.REMOVE
+            cascade = CascadeType.REMOVE,
+            fetch = FetchType.EAGER
     )
-    @LazyCollection(LazyCollectionOption.FALSE)
     private List<FavouriteExercises> favouriteExercises = new ArrayList<>();
-
-    @OneToMany(
-            targetEntity = Workouts.class,
-            mappedBy = "exercisingUser",
-            cascade = CascadeType.REMOVE
-    )
-    @LazyCollection(LazyCollectionOption.FALSE)
-    private List<Workouts> workouts = new ArrayList<>();
 
     public Users(String email, String password) {
         this.email = email;

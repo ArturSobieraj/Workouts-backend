@@ -13,7 +13,7 @@ public class UsersService {
     private UsersDao usersDao;
 
     public Users getUser(String email) {
-        return usersDao.findByEmail(email);
+        return usersDao.findByEmail(email).orElse(new Users());
     }
 
     public Users saveUser(Users user) {
